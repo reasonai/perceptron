@@ -7,7 +7,7 @@
     "survivors": 10,
     "correction": {
       "generations": 100, 
-      "factor": 0.2
+      "factor": 0.3
     },
     "train": [
         [
@@ -38,6 +38,12 @@
       ],
       [
         [25, 120, 25], true
+      ],
+      [
+        [120, 120, 120], true
+      ],
+      [
+        [120, 200, 120], false
       ]
     ]
 }
