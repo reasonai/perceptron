@@ -1,0 +1,43 @@
+{
+    "title": "Detect if the RGB values are a dark tone ? isDark => true if dark",
+    "args": [[0, 255], [0, 255], [0, 255]],
+    "layers": [6, 9, 9, 2],
+    "generations": 50,
+    "population": 1000,
+    "survivors": 10,
+    "correction": {
+      "generations": 100, 
+      "factor": 0.2
+    },
+    "train": [
+        [
+          [255, 13, 25], false
+        ],
+        [
+          [12, 13, 25], true
+        ],
+        [
+          [30, 255, 25], false
+        ],
+        [
+          [30, 55, 255], false
+        ],
+        [
+          [30, 55, 65], true
+        ],
+        [
+          [30, 80, 108], true
+        ],
+        [
+          [125, 160, 200], false
+        ]
+    ],
+    "check": [
+      [
+        [60, 10, 255], false
+      ],
+      [
+        [25, 120, 25], true
+      ]
+    ]
+}
