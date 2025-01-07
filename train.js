@@ -1,7 +1,7 @@
 const ai = require('./lib.js');
 const fs = require('fs');
 if (!process.argv[2]) {
-  console.error('Expecting the test filename. Usage : node test.js tests/rgb-dark.json');
+  console.error('Expecting the test filename. Usage : node train.js tests/rgb-dark.json');
   process.exit(-1);
 }
 
