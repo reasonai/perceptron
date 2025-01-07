@@ -33,16 +33,20 @@ for(let g = 0; g < experiment.generations; g++) {
     return b.points - a.points;
   }).slice(0, experiment.survivors);
   console.timeEnd();
-  console.log((g + 1) + ' - remains ' + population.length + ' survivors - best score is ' + population[0].points + ' (' + Math.round((population[0].points / (experiment.train.length * 2)) * 100) + '%)');
+  if (population.length > 0) {
+    console.log((g + 1) + ' - remains ' + population.length + ' survivors - best score is ' + population[0].points + ' (' + Math.round((population[0].points / (experiment.train.length * 2)) * 100) + '%)');
+  } else {
+    console.log((g + 1) + ' - civilisation is extinct');  
+  }
   population.forEach(function(brain, index) {
-    if (brain.points < experiment.train.length * 2 * 0.5) {
+    /*if (brain.points < experiment.train.length * 2 * 0.5) {
       console.log('* Evolve #' + index + ' : ' + brain.points);
       brain.evolve(Math.random() * 0.001);
       brain.points = 0;
     } else {
       console.log('* Keep #' + index + ' : ' + brain.points);
       brain.points = 1;
-    }
+    }*/
   });
 }
 

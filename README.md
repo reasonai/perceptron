@@ -38,5 +38,12 @@ If suceeds the netword is saved under the file + ".brain"
 
 
 ```
-$ node train.js tests/rgb-dark.json
+$ node run.js tests/rgb-dark.json.brain 
+Detect if the RGB values are a dark tone ? isDark => true if dark
+Arg 1. Enter a value [0,255] : 58
+Arg 2. Enter a value [0,255] : 255
+Arg 3. Enter a value [0,255] : 200
+Call [0.22745098039215686,1,0.7843137254901961]
+Response : false
+```
 

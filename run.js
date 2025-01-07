@@ -27,14 +27,12 @@ const experiment = JSON.parse(fs.readFileSync(process.argv[2].substring(0, proce
     const args = [];
     for(let i = 0; i < experiment.args.length; i++) {
         // ask 
-        args[i] = await prompt("Arg " + (i + 1) + ". Enter a value " + experiment.args[i] + " : ")
+        args[i] = await prompt("Arg " + (i + 1) + ". Enter a value [" + experiment.args[i] + "] : ")
         // normalize
         args[i] = (args[i] -  experiment.args[i][0]) /  experiment.args[i][1];
     }
-    console.log("Response :");
-    console.log(
-        brain.call(null, args)
-    );
+    console.log("Call " + JSON.stringify(args));
+    console.log("Response :", brain.call(null, args)[0] !== 0);
     process.exit(0);
 })();
   

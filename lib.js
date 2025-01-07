@@ -37,7 +37,7 @@ const neuron = function(threshold, weights) {
       const out = [];
       for(let n = 0; n < size; n++) {
         out.push(
-          neurons[n](entrypoint ? [args[n]] : args)
+          neurons[n](entrypoint ? [args[n] + 0.5] : args)
         );
       }
       if (next) {
@@ -82,8 +82,8 @@ const neuron = function(threshold, weights) {
     let brain = null;
     const s = structure.length - 1;
     for(let i = s; i > -1; i--) {
-      brain = layer(structure[i].length, brain);
-      brain.init(structure[i]);
+      brain = layer(structure[i].length, brain, i === 0);
+      brain.init(structure[i]);0
     }
     return brain;
   };
@@ -136,22 +136,29 @@ const neuron = function(threshold, weights) {
    */
   const train = function(population, args, expect, evolve) {
     return population.map(function(brain) {
-      const out = brain(args) != 0;
+      let out = brain(args)[0] != 0;
       
       if(out == expect) {
         brain.points += 2;
       } else {
         if (evolve) {
           let gen = 0;
+          let found = false;
           while(++gen < evolve.generations) {
             brain.evolve(Math.random() * evolve.factor);
+            out = brain(args)[0] !== 0;
             if(out == expect) {
-              brain.points += 4;
+              brain.points += 1;
+              found = true;
               break;
             }
+          } 
+          if (!found) {
+            brain.points -= 4;
           }  
+        } else {
+          brain.points -= 4;
         }
-        brain.points -= 2;
       }
       return brain;
     });
